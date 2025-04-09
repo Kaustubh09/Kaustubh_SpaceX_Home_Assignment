@@ -1,80 +1,183 @@
-/* ======
-Layout
-====== */
+/* === Layout === */
 .header {
-	padding: 1.25rem;
+  padding: 2rem 1rem 1rem;
+  text-align: center;
+}
+
+.header__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: #111;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
 }
 
 .main {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	min-height: 100vh;
-}
-
-.header__title {
-	max-width: fit-content;
-	margin: 0 auto;
-}
-
-
-/* Cards */
-.main__section {
-	max-width: 90%;
-  margin: auto;
-}
-
-
-.launch_card {
-	display: inline-flex;
+  background: #f9fafc;
+  display: flex;
   flex-direction: column;
-	gap: 10px;
-  width: 300px;
-  height: 510px;
-	align-items: center;
-	padding: 1rem;
-	margin: 8px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-	background: #3a3e41ac;
+  align-items: center;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+/* === Card Grid === */
+.main__section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  padding-bottom: 2rem;
+}
+
+/* === Launch Card === */
+.launch_card {
+  background: linear-gradient(to bottom right, #ffffff, #f5f7fa);
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.launch_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Image */
+.img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Typography & Content */
+.launch_card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+  text-align: center;
 }
 
 .card__content {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-
-
-/* Images */
-.img {
-	max-width: 100%;
+.card__content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
 }
 
-/* ========
-Typography
-========= */
-.header__title {
-	font-size: clamp(1.5rem, 2.5vw, 4rem);
+.card__content strong {
+  font-weight: 600;
+  color: #111;
+  margin-right: 0.2rem;
 }
 
-.launch_card p {
-	font-size: 0.8rem;
+/* Status Badge */
+.card__content p:first-child {
+  margin-top: 0.25rem;
 }
 
-.launch_card h2 {
-	font-size: 1rem;
+.status_badge {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 20px;
+  text-transform: capitalize;
+  color: #fff;
 }
 
+.success {
+  background-color: #16a34a;
+}
 
-/* =======
-Media
-======= */
-@media (min-width: 700px) {
-	.nav {
-		margin-bottom: min(2rem, 10%);
-	}
+.failure {
+  background-color: #dc2626;
+}
+
+.upcoming {
+  background-color: #2563eb;
+}
+
+/* Failure Reason */
+.failure_reason {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.4rem;
+}
+
+/* === Pagination === */
+
+.pagination {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffffcc;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+
+.pagination button {
+  background-color: #e5e7eb;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1f2937;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+.pagination button:disabled {
+  background-color: #cbd5e1;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.pagination .activePage {
+  background-color: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* === Media (Optional extra spacing on larger screens) === */
+@media (min-width: 768px) {
+  .main {
+    padding: 3rem 2rem;
+  }
+
+  .pagination {
+    gap: 1rem;
+  }
 }
