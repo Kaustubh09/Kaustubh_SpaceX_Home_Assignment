@@ -1,5 +1,3 @@
-// pages/index.js
-
 import { useEffect, useState, useMemo } from "react";
 import { Roboto } from "next/font/google";
 import axios from "axios";
@@ -55,7 +53,7 @@ export default function Home() {
     // Helper function to reformat date (DD-MM-YYYY).
     const formatDate = (date) =>
       date.slice(0, 10).split("-").reverse().join("-");
-    
+
     const status = launch.success ? "success" : "failure";
 
     return (
